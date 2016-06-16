@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-simulator.html">simulator</a><ul class='methods'><li data-type='method'><a href="module-simulator.html#.run">run</a></li></ul></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Bouncer.html">Bouncer</a><ul class='methods'><li data-type='method'><a href="Bouncer.html#mapUri">mapUri</a></li><li data-type='method'><a href="Bouncer.html#testExceptionRoute">testExceptionRoute</a></li><li data-type='method'><a href="Bouncer.html#testPathRegExp">testPathRegExp</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Consortium">Consortium</a></li><li><a href="global.html#getConsortium">getConsortium</a></li><li><a href="global.html#getConsortiumIdFromRequest">getConsortiumIdFromRequest</a></li><li><a href="global.html#getDocumentIdFromRequest">getDocumentIdFromRequest</a></li><li><a href="global.html#getPort">getPort</a></li><li><a href="global.html#getTargetUrl">getTargetUrl</a></li><li><a href="global.html#getUnauthorizedUrl">getUnauthorizedUrl</a></li></ul>
 </nav>
 
 <div id="main">
@@ -47,50 +47,58 @@
 
 
     <section class="readme">
-        <article><h1>coinstac-simulator</h1><p><img src="https://raw.githubusercontent.com/MRN-Code/coinstac-common/master/img/coinstac.png" height="75px" /></p>
-<p><a href="https://codeship.com/projects/141922"> <img src="https://codeship.com/projects/370d2330-d2b2-0133-5da2-5e07c373472b/status?branch=master" alt="Codeship Status for MRN-Code/coinstac-simulator"></a></p>
-<p>the official API documentation <a href="http://mrn-code.github.io/coinstac-simulator/">lives here</a>, albeit there's not much too it!</p>
-<h2>what</h2><p>provides a runner for you to test your <a href="http://mrn-code.github.io/coinstac-common/DecentralizedComputation.html">DecentralizedComputations</a>.</p>
-<p>we offer both a <em>cli</em> tool and an importable <em>library</em></p>
-<p><img src="https://raw.githubusercontent.com/MRN-Code/coinstac-simulator/master/media/demo-capture.gif" /></p>
-<h2>how</h2><p>regardless if you are simulating by using our CLI or the library, you need to define a &quot;declaration&quot; on how your simulation will be run.  you are welcome to <a href="https://github.com/MRN-Code/coinstac-decentralized-algorithm-integration/blob/master/test/declarations/">look here at some examples</a>.</p>
-<p>a simulation &quot;declaration&quot; is a <code>.js</code> file with the following shape:</p>
-<pre class="prettyprint source lang-js"><code>module.exports = {
-  computationPath: './path/to/decentralized-computation.js',
-  users: [
-    { username: 'user_a', data: { ... } },
-    { username: 'user_b', data: { ... } },
-  ],
-  server: { // optional
-    preRun: [
-      (done) => { /* do something interesting */},
-    ],
-    postRun: [
-      (done) => { /* do something interesting */},
-    ],
-  },
-  verbose: true,
-};</code></pre><ul>
-<li><em>@NOTE</em> the <strong>data</strong> property in each <code>users</code> object is <em>optional</em>, and can be any JSON serializable input</li>
-<li><em>@NOTE</em> the declaration must always be <em>javascript</em>.  feel free to submit a PR to support other types if you strongly prefer YAML/JSON/something-else!</li>
+        <article><h1>coinstac-storage-proxy</h1><p><a href="https://codeship.com/projects/135500"> <img src="https://codeship.com/projects/9f952560-b95e-0133-c4ba-76946c995c7e/status?branch=master" alt="Codeship Status for MRN-Code/coinstac-storage-proxy"></a></p>
+<p>A Hapijs plugin that registers http endpoints to perform authentication and
+authorization of requests to the coinstac storage service (couchdb).</p>
+<h2>Installation</h2><pre class="prettyprint source"><code># install from git
+npm i --save MRN-Code/coinstac-storage-proxy</code></pre><h2>Use:</h2><p>See API <a href="http://mrn-code.github.io/coinstac-storage-proxy/">documentation here</a>.</p>
+<h3>Dependencies</h3><ul>
+<li>h2o2 (hapi plugin)</li>
+<li>authentication: This plugin assumes that you have set up authentiation on
+your hapi server already, and expects to find the user's username at
+<code>request.auth.config.username</code> to perform authorization.</li>
 </ul>
-<h3>cli mode</h3><ul>
-<li><code>npm install -g coinstac-simulator</code></li>
-<li><code>coinstac-simulator -d path-to-declaration.js</code></li>
+<pre class="prettyprint source"><code>const hapi = require('hapi');
+const storageProxy = require('coinstac-storage-proxy');
+const h2o2 = require('h2o2'); //proxy utility for hapi
+
+const server = new hapi.Server();
+server.connection(); //set up default hapi connection
+
+server.register(
+    [
+        {
+            register: storageProxy,
+            options: { targetBaseUrl: 'http://localhost:5984'}
+        },
+        h2o2
+    ],
+    (err) => {
+        if (err) {
+            //something went wrong
+        }
+    }
+);
+
+server.start();</code></pre><h2>Configuration Options:</h2><ul>
+<li><p>targetBaseUrl <strong>required</strong> sets the baseUrl for redirection.</p>
+<ul>
+<li>Must include:<ul>
+<li>protocol (e.g. 'http')</li>
+<li>hostname (e.g. 'example.com')</li>
 </ul>
-<h3>library</h3><pre class="prettyprint source lang-js"><code>const sim = require('coinstac-simulator');
-const handleErrors = require('coinstac-simulator/src/handle-errors')();
-const declaration = require('./path-to-declaration.js');
-sim.setup(declaration, (err) => {
-  if (err) { throw err; }
-  sim.teardown((err) => {
-    if (err) { throw err; }
-  });
-});</code></pre><h2>why</h2><p>because decentralized computation authoring can be difficult.  you should validate your process before going live!</p>
-<h2>when</h2><p>now.</p>
-<h2>where</h2><p>right there at your desk.</p>
-<h3>debugging</h3><p>if <code>verbose</code> is toggled to <code>true</code> in your computation definition for <a href="http://mrn-code.github.io/coinstac-common/CommandComputation.html"><code>cmd</code> type Computations</a>, you can write to <code>stderr</code> to have your information streamed onto the screen.  if that is otherwise insufficient, you will need to capture the inputs to the process, (via parsing the CLI input), and run your faulty script/program using your normal debug strategies of choice for whichever particular language you are using.</p>
-<h2>it's not working</h2><p>file an issue!  we will try and be prompt, and even try to help you with your algorithms if necessary.</p></article>
+</li>
+<li>May include:<ul>
+<li>port (e.g. ':5984')</li>
+<li>path-prefix (e.g. '/myCouchInstance') (request path will be appended)</li>
+<li>querystring (e.g. '?authToken=...') (request querystring will be appended)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2>Authentication enforcement</h2><p>See <code>src/index.js</code> for a list of supported endpoints and how authorization is
+enforced.</p></article>
     </section>
 
 
@@ -103,7 +111,7 @@ sim.setup(declaration, (err) => {
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jun 15 2016 17:31:17 GMT-0700 (PDT) using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
