@@ -23,7 +23,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-server.html">server</a><ul class='methods'><li data-type='method'><a href="module-server.html#.start">start</a></li><li data-type='method'><a href="module-server.html#.stop">stop</a></li></ul></li><li><a href="module-service_computation-registry.html">service/computation-registry</a><ul class='methods'><li data-type='method'><a href="module-service_computation-registry.html#.get">get</a></li><li data-type='method'><a href="module-service_computation-registry.html#.getComputationsPath">getComputationsPath</a></li><li data-type='method'><a href="module-service_computation-registry.html#.init">init</a></li><li data-type='method'><a href="module-service_computation-registry.html#.teardown">teardown</a></li><li data-type='method'><a href="module-service_computation-registry.html#.upsertComputationsDir">upsertComputationsDir</a></li></ul></li><li><a href="module-service_computations-database-syncer.html">service/computations-database-syncer</a><ul class='methods'><li data-type='method'><a href="module-service_computations-database-syncer.html#.sync">sync</a></li></ul></li><li><a href="module-service_db-registry.html">service/db-registry</a><ul class='methods'><li data-type='method'><a href="module-service_db-registry.html#.get">get</a></li><li data-type='method'><a href="module-service_db-registry.html#.getDBPath">getDBPath</a></li><li data-type='method'><a href="module-service_db-registry.html#.init">init</a></li><li data-type='method'><a href="module-service_db-registry.html#.teardown">teardown</a></li><li data-type='method'><a href="module-service_db-registry.html#.upsertDBDir">upsertDBDir</a></li></ul></li><li><a href="module-service_logger.html">service/logger</a></li><li><a href="module-service_remote-pipeline-runner-pool.html">service/remote-pipeline-runner-pool</a><ul class='methods'><li data-type='method'><a href="module-service_remote-pipeline-runner-pool.html#.init">init</a></li><li data-type='method'><a href="module-service_remote-pipeline-runner-pool.html#.teardown">teardown</a></li></ul></li><li><a href="module-service_seed-consortia.html">service/seed-consortia</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-simulator.html">simulator</a><ul class='methods'><li data-type='method'><a href="module-simulator.html#.run">run</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
@@ -47,50 +47,50 @@
 
 
     <section class="readme">
-        <article><h1>COINSTAC Server Core</h1><p><a href="https://codeship.com/projects/151361"> <img src="https://codeship.com/projects/a8196230-f9d0-0133-2f5f-124ad23604b3/status?branch=master" alt="Codeship Status for MRN-Code/coinstac-server-core"></a> <a href="https://coveralls.io/github/MRN-Code/coinstac-server-core?branch=master"><img src="https://coveralls.io/repos/github/MRN-Code/coinstac-server-core/badge.svg?branch=master" alt="Coverage Status"></a></p>
-<p><em>COINSTAC’s core server functionality.</em></p>
-<h2>Install</h2><p>Install in your project to use programmatically:</p>
-<pre class="prettyprint source lang-shell"><code>npm install coinstac-server-core --save</code></pre><p>Or, install globally for easy CLI use:</p>
-<pre class="prettyprint source lang-shell"><code>npm install coinstac-server-core</code></pre><h2>Usage</h2><p>Official API documentation may be found <a href="http://mrn-code.github.io/coinstac-server-core/">here</a>.</p>
-<h3>Programmatically</h3><p>This library has one chief export, a <code>server</code> function:</p>
-<pre class="prettyprint source lang-js"><code>const coinstacServerCore = require('coinstac-server-core');
-
-constacServerCore({
-  // External database URL:
-  dbUrl: 'https://my-cloud.cloudant.com/',
-
-  // Keep local docs memory (using memdown):
-  inMemory: true,
-
-  // Seed the consortia database:
-  seed: [{/*...*/}, {/*...*/}]
-})
-  .then(remotePipelineRunnerPoolInstance => { ... })
-  .catch(error => console.error(error));</code></pre><h3>CLI</h3><p>Use the <code>coinstac-server-core</code> utility. Pass the <code>--help</code> flag to see all the options:</p>
-<pre class="prettyprint source lang-shell"><code>$ coinstac-server-core --help
-
-  Usage: coinstac-server-core [options]
-
-  Options:
-
-    -h, --help               output usage information
-    -V, --version            output the version number
-    -db, --database [value]  Database connection string
-    -m, --memory             Use in-memory database
-    -s, --seed [value]       Seed the consortia database
-
-  Databases:
-
-    Specify the CouchDB database connection as a URL string:
-
-    $ coinstac-server-core --database http://localhost:5984
-
-    Seeding:
-
-    Pass the '--seed' flag to use the built-in seed documents. You may also pass
-    in the path to your custom consortia JSON file:
-
-    $ coinstac-server-core --seed ./path/to/my/docs.json</code></pre><h2>License</h2><p>MIT. See <a href="./LICENSE">LICENSE</a>.</p></article>
+        <article><h1>coinstac-simulator</h1><p><img src="https://raw.githubusercontent.com/MRN-Code/coinstac-common/master/img/coinstac.png" height="75px" /></p>
+<p><a href="https://codeship.com/projects/141922"> <img src="https://codeship.com/projects/370d2330-d2b2-0133-5da2-5e07c373472b/status?branch=master" alt="Codeship Status for MRN-Code/coinstac-simulator"></a></p>
+<p>the official API documentation <a href="http://mrn-code.github.io/coinstac-simulator/">lives here</a>, albeit there's not much too it!</p>
+<h2>what</h2><p>provides a runner for you to test your <a href="http://mrn-code.github.io/coinstac-common/DecentralizedComputation.html">DecentralizedComputations</a>.</p>
+<p>we offer both a <em>cli</em> tool and an importable <em>library</em></p>
+<p><img src="https://raw.githubusercontent.com/MRN-Code/coinstac-simulator/master/media/demo-capture.gif" /></p>
+<h2>how</h2><p>regardless if you are simulating by using our CLI or the library, you need to define a &quot;declaration&quot; on how your simulation will be run.  you are welcome to <a href="https://github.com/MRN-Code/coinstac-decentralized-algorithm-integration/blob/master/test/declarations/">look here at some examples</a>.</p>
+<p>a simulation &quot;declaration&quot; is a <code>.js</code> file with the following shape:</p>
+<pre class="prettyprint source lang-js"><code>module.exports = {
+  computationPath: './path/to/decentralized-computation.js',
+  users: [
+    { username: 'user_a', data: { ... } },
+    { username: 'user_b', data: { ... } },
+  ],
+  server: { // optional
+    preRun: [
+      (done) => { /* do something interesting */},
+    ],
+    postRun: [
+      (done) => { /* do something interesting */},
+    ],
+  },
+  verbose: true,
+};</code></pre><ul>
+<li><em>@NOTE</em> the <strong>data</strong> property in each <code>users</code> object is <em>optional</em>, and can be any JSON serializable input</li>
+<li><em>@NOTE</em> the declaration must always be <em>javascript</em>.  feel free to submit a PR to support other types if you strongly prefer YAML/JSON/something-else!</li>
+</ul>
+<h3>cli mode</h3><ul>
+<li><code>npm install -g coinstac-simulator</code></li>
+<li><code>coinstac-simulator -d path-to-declaration.js</code></li>
+</ul>
+<h3>library</h3><pre class="prettyprint source lang-js"><code>const sim = require('coinstac-simulator');
+const handleErrors = require('coinstac-simulator/src/handle-errors')();
+const declaration = require('./path-to-declaration.js');
+sim.setup(declaration, (err) => {
+  if (err) { throw err; }
+  sim.teardown((err) => {
+    if (err) { throw err; }
+  });
+});</code></pre><h2>why</h2><p>because decentralized computation authoring can be difficult.  you should validate your process before going live!</p>
+<h2>when</h2><p>now.</p>
+<h2>where</h2><p>right there at your desk.</p>
+<h3>debugging</h3><p>if <code>verbose</code> is toggled to <code>true</code> in your computation definition for <a href="http://mrn-code.github.io/coinstac-common/CommandComputation.html"><code>cmd</code> type Computations</a>, you can write to <code>stderr</code> to have your information streamed onto the screen.  if that is otherwise insufficient, you will need to capture the inputs to the process, (via parsing the CLI input), and run your faulty script/program using your normal debug strategies of choice for whichever particular language you are using.</p>
+<h2>it's not working</h2><p>file an issue!  we will try and be prompt, and even try to help you with your algorithms if necessary.</p></article>
     </section>
 
 
@@ -103,7 +103,7 @@ constacServerCore({
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Wed Jun 15 2016 17:31:17 GMT-0700 (PDT) using the Minami theme.
 </footer>
 
 <script>prettyPrint();</script>
