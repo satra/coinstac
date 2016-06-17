@@ -3,72 +3,79 @@
   <head>
     <meta charset="UTF-8">
     <title>COINSTAC API Documentation</title>
-    <link rel="stylesheet" href="github-markdown-css.css">
+    <link rel="stylesheet" href="github-markdown.css">
+    <style>
+      body {
+        padding: 1rem;
+      }
+    </style>
   </head>
-  <body>
-    &lt;h1 id=&quot;coinstac&quot;&gt;COINSTAC&lt;/h1&gt;
-&lt;p&gt;&lt;em&gt;Decentralized Analyses Made Easy&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/MRN-Code/coinstac/master/packages/coinstac-common/img/coinstac.png&quot; height=&quot;75px&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;#&quot; title=&quot;Collaborative Informatics and Neuroimaging Suite Toolkit for Anonymous Computation&quot;&gt;COINSTAC&lt;/a&gt; is software to foster collaborative research, removing large barriers to traditional data-centric collaboration approaches.  It enables groups of users to run common analyses &lt;em&gt;on their own machines&lt;/em&gt; over &lt;em&gt;their own datasets&lt;/em&gt; with ease.  The results of these analyses are synchronized to the cloud, and undergo aggregate analyses processes using all contributor data.  Decentralized pipelines allow for distributed, iterative, and feature rich analyses to be run, opening new and exciting capabilities for collaborative computation.  If also offers data anonymity through differential privacy algorithms, so members do not need to fear PHI traceback.&lt;/p&gt;
-&lt;p&gt;Let&#39;s do research!&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Table of Contents:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#the-problem&quot;&gt;The Problem&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#the-solution&quot;&gt;The Solution&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#getting-started&quot;&gt;Getting Started&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#under-the-hood&quot;&gt;Under The Hood&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#license&quot;&gt;License&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;the-problem&quot;&gt;The Problem&lt;/h2&gt;
-&lt;p&gt;You want to do research, and you want to include data from around the world.  Unfortunately, orchestrating such an event is anything but trivial.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Coordinating data-driven research can be difficult.  Who&#39;s going to collect all of the files?  Who is going to actually &quot;run&quot; all of the data?&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Ensuring privacy can be difficult.  Can I trust other people or institutions with my research participants&#39; data?  Am I even allowed to share it?&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Large datasets can be expensive to transfer.  When file sets are in the GB and TB range, network transfers are not immediately trivial or even practical.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Valuable research data may often not be shared due to privacy or IRB constraints.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&quot;Smart bullies&quot; have demonstrated ability to extract personal information from various aggregated, anonymized datasets.  How can we share data without revealing confidential information?&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Bottom line--collaborative group research requires a great deal of coordination.  Human and business factors can hamper research from happening at a pace that we are able to handle!  Constraints may even forbid group research to occur at all.&lt;/p&gt;
-&lt;h1 id=&quot;the-solution&quot;&gt;The Solution&lt;/h1&gt;
-&lt;p&gt;Let&#39;s remove these barriers.  The best usage of research data is to apply it &lt;em&gt;everywhere it can be useful&lt;/em&gt;.  Our strategy enables otherwise &quot;locked-down data&quot; to become useful again.&lt;/p&gt;
-&lt;p&gt;COINSTAC removes the barriers to collaborative analysis by:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;decentralizing analyses and computation&lt;/strong&gt;&lt;ul&gt;
-&lt;li&gt;each user performs analyses/pipelines/etc all on their own computers. bits and pieces of each users&#39; output &lt;em&gt;may&lt;/em&gt; be sent to a central compute node&lt;/li&gt;
-&lt;li&gt;a central compute node performs a complimentary component of the group analysis, generally a Machine Learning algorithm.  this node may trigger adjusted computations on users&#39; machines, generally in effort to improve a model, which the research is trying to predict!  &lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;not&lt;/em&gt; synchronizing full datasets. instead, &lt;strong&gt;synchronizing only resultant analysis metrics&lt;/strong&gt;&lt;ul&gt;
-&lt;li&gt;as previously discussed, central compute nodes aggregate these metrics, and attempt to draw conclusions from the contributor swarm&lt;/li&gt;
-&lt;li&gt;because machine learning algorithms can be designed to model outcomes via artifacts of your analysis Pipelines, we keep your data safely and conveniently on your own machine, &lt;em&gt;untouched&lt;/em&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;applying differential privacy&lt;/strong&gt; strategies to truly anonymize private data, whilst still permitting collaboration.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;You may wonder why we haven&#39;t been doing this before!  Us too.  Let&#39;s get started!&lt;/p&gt;
-&lt;h2 id=&quot;getting-started&quot;&gt;Getting Started&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;If you are looking to contribute data, head over to &lt;a href=&quot;https://github.com/MRN-Code/coinstac/tree/master/packages/coinstac-ui&quot;&gt;coinstac-ui&lt;/a&gt;.  There, you will be able to download the application.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;If you are a developer or scientist and want to design a decentralized computation, please see:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;DecentralizedComputation.md&quot;&gt;DecentralizedComputation.md&lt;/a&gt; for how to build your own &lt;code&gt;DecentralizedComputation&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/MRN-Code/coinstac/tree/master/packages/coinstac-simulator&quot;&gt;coinstac-simulator&lt;/a&gt; for how to test your freshly created &lt;code&gt;DecentralizedComputation&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;&quot;Under the Hood&quot; below, if you want to understand how the system works.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;under-the-hood&quot;&gt;Under The Hood&lt;/h2&gt;
-&lt;p&gt;Developer documentation and system design information may be found over in our &lt;a href=&quot;./TECHNICAL.md&quot;&gt;technical docs&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&quot;license&quot;&gt;License&lt;/h2&gt;
-&lt;p&gt;MIT. See &lt;a href=&quot;./LICENSE&quot;&gt;LICENSE&lt;/a&gt; for details.&lt;/p&gt;
+  <body class="markdown-body">
+    <h1 id="coinstac">COINSTAC</h1>
+<p><em>Decentralized Analyses Made Easy</em></p>
+<p><img src="https://raw.githubusercontent.com/MRN-Code/coinstac/master/packages/coinstac-common/img/coinstac.png" height="75px" /></p>
+<p><a href="#" title="Collaborative Informatics and Neuroimaging Suite Toolkit for Anonymous Computation">COINSTAC</a> is software to foster collaborative research, removing large barriers to traditional data-centric collaboration approaches.  It enables groups of users to run common analyses <em>on their own machines</em> over <em>their own datasets</em> with ease.  The results of these analyses are synchronized to the cloud, and undergo aggregate analyses processes using all contributor data.  Decentralized pipelines allow for distributed, iterative, and feature rich analyses to be run, opening new and exciting capabilities for collaborative computation.  If also offers data anonymity through differential privacy algorithms, so members do not need to fear PHI traceback.</p>
+<p>Let&#39;s do research!</p>
+<p><strong>Table of Contents:</strong></p>
+<ul>
+<li><a href="#the-problem">The Problem</a></li>
+<li><a href="#the-solution">The Solution</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#under-the-hood">Under The Hood</a></li>
+<li><a href="#license">License</a></li>
+</ul>
+<h2 id="the-problem">The Problem</h2>
+<p>You want to do research, and you want to include data from around the world.  Unfortunately, orchestrating such an event is anything but trivial.</p>
+<ul>
+<li><p>Coordinating data-driven research can be difficult.  Who&#39;s going to collect all of the files?  Who is going to actually &quot;run&quot; all of the data?</p>
+</li>
+<li><p>Ensuring privacy can be difficult.  Can I trust other people or institutions with my research participants&#39; data?  Am I even allowed to share it?</p>
+</li>
+<li><p>Large datasets can be expensive to transfer.  When file sets are in the GB and TB range, network transfers are not immediately trivial or even practical.</p>
+</li>
+<li><p>Valuable research data may often not be shared due to privacy or IRB constraints.</p>
+</li>
+<li><p>&quot;Smart bullies&quot; have demonstrated ability to extract personal information from various aggregated, anonymized datasets.  How can we share data without revealing confidential information?</p>
+</li>
+</ul>
+<p>Bottom line--collaborative group research requires a great deal of coordination.  Human and business factors can hamper research from happening at a pace that we are able to handle!  Constraints may even forbid group research to occur at all.</p>
+<h1 id="the-solution">The Solution</h1>
+<p>Let&#39;s remove these barriers.  The best usage of research data is to apply it <em>everywhere it can be useful</em>.  Our strategy enables otherwise &quot;locked-down data&quot; to become useful again.</p>
+<p>COINSTAC removes the barriers to collaborative analysis by:</p>
+<ul>
+<li><strong>decentralizing analyses and computation</strong><ul>
+<li>each user performs analyses/pipelines/etc all on their own computers. bits and pieces of each users&#39; output <em>may</em> be sent to a central compute node</li>
+<li>a central compute node performs a complimentary component of the group analysis, generally a Machine Learning algorithm.  this node may trigger adjusted computations on users&#39; machines, generally in effort to improve a model, which the research is trying to predict!  </li>
+</ul>
+</li>
+<li><em>not</em> synchronizing full datasets. instead, <strong>synchronizing only resultant analysis metrics</strong><ul>
+<li>as previously discussed, central compute nodes aggregate these metrics, and attempt to draw conclusions from the contributor swarm</li>
+<li>because machine learning algorithms can be designed to model outcomes via artifacts of your analysis Pipelines, we keep your data safely and conveniently on your own machine, <em>untouched</em>.</li>
+</ul>
+</li>
+<li><strong>applying differential privacy</strong> strategies to truly anonymize private data, whilst still permitting collaboration.</li>
+</ul>
+<p>You may wonder why we haven&#39;t been doing this before!  Us too.  Let&#39;s get started!</p>
+<h2 id="getting-started">Getting Started</h2>
+<ul>
+<li><p>If you are looking to contribute data, head over to <a href="https://github.com/MRN-Code/coinstac/tree/master/packages/coinstac-ui">coinstac-ui</a>.  There, you will be able to download the application.</p>
+</li>
+<li><p>If you are a developer or scientist and want to design a decentralized computation, please see:</p>
+<ul>
+<li><a href="DecentralizedComputation.md">DecentralizedComputation.md</a> for how to build your own <code>DecentralizedComputation</code>.</li>
+<li><a href="https://github.com/MRN-Code/coinstac/tree/master/packages/coinstac-simulator">coinstac-simulator</a> for how to test your freshly created <code>DecentralizedComputation</code>.</li>
+<li>&quot;Under the Hood&quot; below, if you want to understand how the system works.</li>
+<li><strong>API Documentation</strong> is formally available <a href="http://www.mrn-code.github.io/coinstac/index.html#api-docs">here</a>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="under-the-hood">Under The Hood</h2>
+<p>Developer documentation and system design information may be found over in our <a href="./TECHNICAL.md">technical docs</a>.</p>
+<h2 id="license">License</h2>
+<p>MIT. See <a href="./LICENSE">LICENSE</a> for details.</p>
 
-    <h1>COINSTAC API Documentation</h1>
+    <a id="api-docs"></a>
+    <h3>COINSTAC API Documentation</h3>
     <p>
       COINSTAC is comprised of many libraries to make it great!
       Please use the below links to navigate to package specific API docs.
