@@ -50,7 +50,6 @@
     "winston": "^2.1.1"
   },
   "devDependencies": {
-    "coins-validate": "^4.1.0",
     "coveralls": "^2.11.9",
     "dom-storage": "^2.0.2",
     "eslint": "^2.10.2",
@@ -69,10 +68,5 @@
     "pouchdb-adapter-memory": "^5.4.3",
     "sinon": "^1.17.3",
     "tape": "^4.4.0"
-  },
-  "pre-commit": [
-    "lint",
-    "validate",
-    "test"
-  ]
+  }
 }

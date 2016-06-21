@@ -38,7 +38,6 @@
     "winston": "^2.1.1"
   },
   "devDependencies": {
-    "coins-validate": "^4.1.0",
     "concat-stream": "^1.5.1",
     "coveralls": "^2.11.9",
     "eslint": "^2.11.0",
@@ -53,10 +52,5 @@
     "pouchy": "^9.0.2",
     "sinon": "^1.17.3",
     "tape": "^4.4.0"
-  },
-  "pre-commit": [
-    "validate",
-    "lint",
-    "test"
-  ]
+  }
 }

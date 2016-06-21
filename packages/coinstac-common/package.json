@@ -35,7 +35,6 @@
   "homepage": "http://mrn-code.github.io/coinstac-common/",
   "devDependencies": {
     "clarify": "^1.0.5",
-    "coins-validate": "^4.1.0",
     "coveralls": "^2.11.9",
     "eslint": "^2.8.0",
     "eslint-config-airbnb": "^8.0.0",
@@ -57,10 +56,6 @@
     "tape": "^4.4.0",
     "trace": "^2.3.0"
   },
-  "pre-commit": [
-    "validate",
-    "test"
-  ],
   "scripts": {
     "lint": "eslint src/ test/",
     "lintfix": "eslint --fix src/ test/",

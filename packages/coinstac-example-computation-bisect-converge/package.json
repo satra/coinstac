@@ -31,11 +31,6 @@
     "url": "https://github.com/MRN-Code/coinstac-example-computation-bisect-converge/issues"
   },
   "homepage": "https://github.com/MRN-Code/coinstac-example-computation-bisect-converge#readme",
-  "pre-commit": [
-    "validate",
-    "lint",
-    "test"
-  ],
   "devDependencies": {
     "coinstac-simulator": "^2.0.2",
     "eslint": "^2.9.0",

@@ -24,13 +24,7 @@
     "url": "https://github.com/MRN-Code/coinstac-distributed-algorithm-integration/issues"
   },
   "homepage": "https://github.com/MRN-Code/coinstac-distributed-algorithm-integration",
-  "pre-commit": [
-    "validate",
-    "lint",
-    "test"
-  ],
   "devDependencies": {
-    "coins-validate": "latest",
     "coinstac-simulator": "^2.0.2",
     "eslint": "^2.4.0",
     "eslint-config-airbnb": "^6.1.0",
